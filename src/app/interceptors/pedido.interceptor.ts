@@ -28,7 +28,7 @@ export class PedidoInterceptor implements HttpInterceptor {
 
     return next.handle(peticion).pipe(tap(()=>{},
     (error: any) => {
-      console.log("ERROR************")
+      console.log("EERROR************")
       if(error instanceof HttpErrorResponse) {
         if(error.status !== 401){
           return

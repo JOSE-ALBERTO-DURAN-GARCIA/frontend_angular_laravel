@@ -15,7 +15,8 @@ export class LoginComponent {
      password: new FormControl('', [Validators.required])
   });
 
-  constructor(private authService: AuthService, private router: Router ){}
+  constructor(private authService: AuthService, private router: Router){}
+  
   ingresar(){
     let credenciales: any = {
       email: this.loginForm.value.email,
