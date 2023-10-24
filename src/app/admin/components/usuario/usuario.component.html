@@ -1,40 +1,68 @@
-<h1>Gestion Usuario</h1>
-{{ usuarios | json }}
+<div class="card">
+  
+    <h1>Gestion Usuario</h1>
+    {{ usuarios | json }}
+    
+    
+    <form [formGroup]="usuarioForm">
+        <label >Ingrese su Nombre</label>
+        <input type="text" formControlName="name">
+        <br>
+        <label >Ingrese su Correo</label>
+        <input type="email" formControlName="email">
+        <br>
+        <label for="">Ingrese su contraseña</label>
+        <input type="password" formControlName="password">
+        <br>
+        <input type="button" [disabled]= "!usuarioForm.valid"(click)= "guardarUsuario()" value="Guardar Usuario">
+    </form>
+    <!-- 
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>NOMBRE</th>
+                <th>CORREO</th>
+                <th>CREADO EN</th>
+                <th>GESTION</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let us of usuarios">
+                <td> {{ us.id }} </td>
+                <td> {{ us.name }} </td>
+                <td> {{ us.email }} </td>
+                <td> {{ us.created_at }} </td>
+                <td>
+                    <button (click)="funEditar(us)">editar</button>
+                    <button (click)="funEliminar(us)">eliminar</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    -->
 
-
-<form [formGroup]="usuarioForm">
-    <label >Ingrese su Nombre</label>
-    <input type="text" formControlName="name">
-    <br>
-    <label >Ingrese su Correo</label>
-    <input type="email" formControlName="email">
-    <br>
-    <label for="">Ingrese su contraseña</label>
-    <input type="password" formControlName="password">
-    <br>
-    <input type="button" [disabled]= "!usuarioForm.valid"(click)= "guardarUsuario()" value="Guardar Usuario">
-</form>
-
-<table border="1">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>NOMBRE</th>
-            <th>CORREO</th>
-            <th>CREADO EN</th>
-            <th>GESTION</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let us of usuarios">
-            <td> {{ us.id }} </td>
-            <td> {{ us.name }} </td>
-            <td> {{ us.email }} </td>
-            <td> {{ us.created_at }} </td>
-            <td>
-                <button (click)="funEditar(us)">editar</button>
-                <button (click)="funEliminar(us)">eliminar</button>
-            </td>
-        </tr>
-    </tbody>
-</table>
+    <p-table [value]="usuarios" [tableStyle]="{ 'min-width': '50rem' }">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Correo</th>
+                <th>Creado EN</th>
+                <th>Gestion</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-us>
+            <tr>
+                <td>{{ us.id }}</td>
+                <td>{{ us.name }}</td>
+                <td>{{ us.email }}</td>
+                <td>{{ us.created_at }}</td>
+                <td>
+                    <button (click)="funEditar(us)">editar</button>
+                    <button (click)="funEliminar(us)">eliminar</button> 
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
