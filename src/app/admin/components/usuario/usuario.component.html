@@ -1,7 +1,7 @@
 <div class="card">
   
     <h1>Gestion Usuario</h1>
-    {{ usuarios | json }}
+    <!-- {{ usuarios | json }} -->
     
     
     <form [formGroup]="usuarioForm">
@@ -41,6 +41,24 @@
         </tbody>
     </table>
     -->
+
+    <p-button (click)="showDialog()" icon="pi pi-external-link" label="Nuevo Usuario"></p-button>
+<p-dialog header="Header" [(visible)]="visible" [style]="{width: '50vw'}">
+    <form [formGroup]="usuarioForm">
+        <label >Ingrese su Nombre</label>
+        <input type="text" formControlName="name">
+        <br>
+        <label >Ingrese su Correo</label>
+        <input type="email" formControlName="email">
+        <br>
+        <label for="">Ingrese su contraseña</label>
+        <input type="password" formControlName="password">
+        <br>
+        <input type="button" [disabled]= "!usuarioForm.valid"(click)= "guardarUsuario()" value="Guardar Usuario">
+    </form>
+</p-dialog>
+
+
 
     <p-table [value]="usuarios" [tableStyle]="{ 'min-width': '50rem' }">
         <ng-template pTemplate="header">
